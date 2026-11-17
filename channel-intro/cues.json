@@ -1,0 +1,22 @@
+{
+  "bpm": 128,
+  "duration": 15,
+  "chords": [[50, "m"], [46, ""], [53, ""], [48, ""]],
+  "bars": [
+    {"pad": 1, "hats": 1},
+    {"kick": 1, "hats": 1, "clap": 1, "bass": 1, "pad": 1},
+    {"kick": 1, "hats": 1, "pad": 1, "bass": 1},
+    {"kick": 1, "hats": 2, "clap": 1, "bass": 1, "pad": 1},
+    {"kick": 1, "hats": 2, "clap": 1, "bass": 1, "pad": 1},
+    {"kick": 1, "hats": 2, "clap": 1, "bass": 1, "pad": 1},
+    {"kick": 1, "hats": 2, "clap": 1, "bass": 1, "pad": 1},
+    {"pad": 1, "kick": 1}
+  ],
+  "mute": [[4.219, 5.625]],
+  "impacts": [0.469, 5.625, 11.25],
+  "whooshes": [0.469, 3.75, 5.625, 7.5, 11.25],
+  "risers": [[9.844, 11.25]],
+  "ticks": [[4.219, 5.625], [13.125, 13.13]],
+  "chimes": [11.25],
+  "fade_out": 0.8
+}

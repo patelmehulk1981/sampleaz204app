@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>Vocal for Sanatan — Channel Intro</title>
+<style>
+  @font-face { font-family: Poppins; font-weight: 600; src: url(assets/fonts/poppins-latin-600-normal.woff2) format('woff2'); }
+  @font-face { font-family: Poppins; font-weight: 700; src: url(assets/fonts/poppins-latin-700-normal.woff2) format('woff2'); }
+  @font-face { font-family: Poppins; font-weight: 800; src: url(assets/fonts/poppins-latin-800-normal.woff2) format('woff2'); }
+  @font-face { font-family: Hind; font-weight: 600; src: url(assets/fonts/hind-devanagari-600-normal.woff2) format('woff2'); }
+  @font-face { font-family: Hind; font-weight: 700; src: url(assets/fonts/hind-devanagari-700-normal.woff2) format('woff2'); }
+
+  /* Brand tokens — sampled from the Vocal for Sanatan logo and promo */
+  :root {
+    --saffron: #E8641C;
+    --saffron-deep: #C44E14;
+    --saffron-soft: #F7B27A;
+    --navy: #15213F;
+    --leaf: #4E7A2E;
+    --paper: #F5F2ED;
+    --paper-2: #ECE7E0;
+  }
+  html, body { margin: 0; background: #111; overflow: hidden; }
+  #stage { position: relative; overflow: hidden; background: var(--paper); font-family: Poppins, Hind, sans-serif; }
+  #stage * { box-sizing: border-box; }
+  .abs { position: absolute; left: 0; top: 0; will-change: transform, opacity, filter; }
+  .c { transform-origin: 50% 50%; }
+  .line { overflow: hidden; display: block; padding: 0.06em 0.04em 0.02em; line-height: 1.12; }
+  .line > span { display: inline-block; }
+  .navy { color: var(--navy); } .saff { color: var(--saffron); }
+  .deva { font-family: Hind, Poppins, sans-serif; font-weight: 700; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <!-- background system: paper, drifting saffron glow, concentric arcs (from the reference) -->
+  <div id="glow" class="abs"></div>
+  <svg id="arcs" class="abs" viewBox="-500 -500 1000 1000"></svg>
+  <svg id="sparkle" class="abs" viewBox="-50 -50 100 100"><path d="M0-48C4-12 12-4 48 0 12 4 4 12 0 48-4 12-12 4-48 0-12-4-4-12 0-48Z" fill="#fff"/></svg>
+
+  <!-- S1 logo slam + wordmark -->
+  <svg id="pulse" class="abs" viewBox="-500 -500 1000 1000"></svg>
+  <img id="logo" class="abs c" src="assets/logo.png" alt="">
+  <div id="mark" class="abs">
+    <span class="line"><span id="w1" class="navy" style="font-weight:800">VOCAL</span></span>
+    <span class="line"><span id="w2" class="saff" style="font-weight:700">FOR</span></span>
+    <span class="line"><span id="w3" class="saff" style="font-weight:800">SANATAN</span></span>
+    <span class="line"><span id="w4" class="navy deva" style="font-weight:600"></span></span>
+  </div>
+
+  <!-- S2 question → answer (the tension gap lives here) -->
+  <div id="qa" class="abs">
+    <svg id="qmark" viewBox="0 0 100 150"><path id="qpath" d="M22 46C22 22 40 10 56 10 76 10 90 24 90 42 90 60 78 68 66 76 58 82 54 88 54 100M50 128a8 8 0 1 0 0.1 0" fill="none" stroke="currentColor" stroke-width="6.5" stroke-linecap="round"/></svg>
+    <div>
+      <span class="line"><span id="q1" class="navy" style="font-weight:700">Shop <span class="deva">नहीं है?</span></span></span>
+      <span class="line"><span id="q2" class="saff deva">कोई समस्या नहीं!</span></span>
+    </div>
+  </div>
+
+  <!-- S3 pillars: one word per beat -->
+  <div id="pillar" class="abs">
+    <div id="pword" class="abs deva c"></div>
+    <div id="pbar" class="abs"></div>
+    <div id="pcount" class="abs"></div>
+  </div>
+
+  <!-- S4 the line from the promo -->
+  <div id="closer" class="abs">
+    <span class="line"><span id="c1" class="navy" style="font-weight:700">Shop <span class="deva">नहीं…</span></span></span>
+    <span class="line"><span id="c2" class="navy deva">फिर भी</span></span>
+    <span class="line" style="overflow:visible"><span id="c3wrap" style="position:relative;display:inline-block">
+      <span id="pill" class="abs"></span>
+      <span id="c3" style="position:relative;color:#fff;font-weight:800;display:inline-block">Business <span class="deva">है!</span></span>
+    </span></span>
+  </div>
+
+  <!-- transitions -->
+  <div id="wipe" class="abs"></div>
+  <div id="iris" class="abs c"></div>
+  <div id="iris2" class="abs c"></div>
+
+  <!-- S5 resolve -->
+  <img id="logo2" class="abs c" src="assets/logo.png" alt="">
+  <div id="sub" class="abs c">
+    <svg id="bell" viewBox="0 0 24 24"><path d="M12 22a2.5 2.5 0 0 0 2.4-2h-4.8A2.5 2.5 0 0 0 12 22Zm7-6V11a7 7 0 0 0-5.5-6.8V3.5a1.5 1.5 0 0 0-3 0v.7A7 7 0 0 0 5 11v5l-2 2v1h18v-1Z" fill="currentColor"/></svg>
+    <span id="subtxt">SUBSCRIBE</span>
+  </div>
+  <div id="ripple" class="abs c"></div>
+  <svg id="cursor" class="abs" viewBox="0 0 32 32"><path d="M6 3l19 12-8.5 1.6 5 9.4-3.6 1.8-5-9.4L6 24Z" fill="#fff" stroke="#15213F" stroke-width="1.8" stroke-linejoin="round"/></svg>
+</div>
+
+<script src="engine.js"></script>
+<script>
+const qs = new URLSearchParams(location.search);
+const W = +(qs.get('w') || 1920), H = +(qs.get('h') || 1080);
+const P = H > W;                       // portrait (9:16) layout
+const U = Math.min(W, H) / 100;        // 1u = 1% of the short side
+const cx = W / 2, cy = H / 2;
+const { kf, ease, clamp, motionBlur, shake, grid, css } = KI;
+const B = grid(128);                   // 128 BPM: 32 beats = 15.0 s exactly
+const $ = id => document.getElementById(id);
+
+// ---------- static layout ----------
+const stage = $('stage');
+css(stage, { width: W + 'px', height: H + 'px' });
+document.body.style.width = W + 'px';
+
+css($('glow'), { width: W * 1.6 + 'px', height: W * 1.6 + 'px', borderRadius: '50%',
+  background: 'radial-gradient(circle, rgba(247,178,122,.42) 0%, rgba(232,100,28,.12) 30%, rgba(245,242,237,0) 65%)' });
+
+// concentric arcs, like the reference's background
+const arcs = $('arcs');
+css(arcs, { width: Math.max(W, H) * 1.5 + 'px', height: Math.max(W, H) * 1.5 + 'px' });
+arcs.innerHTML = [90, 150, 210, 270, 330, 390, 450].map((r, i) =>
+  `<circle r="${r}" fill="none" stroke="${i % 3 === 1 ? '#E8641C' : '#B9B2A8'}" stroke-opacity="${i % 3 === 1 ? .22 : .28}"
+     stroke-width="${i % 2 ? 1.2 : 2.4}" stroke-dasharray="${i % 2 ? '4 10' : `${r * 2.2} ${r * 4}`}"/>`).join('');
+const pulse = $('pulse');
+css(pulse, { width: H * 1.6 + 'px', height: H * 1.6 + 'px' });
+pulse.innerHTML = [0, 1, 2].map(i => `<circle id="pr${i}" r="100" fill="none" stroke="#E8641C" stroke-width="3"/>`).join('');
+
+css($('sparkle'), { width: 4.2 * U + 'px', height: 4.2 * U + 'px' });
+
+const LOGO = P ? W * 0.74 : H * 0.62;
+for (const id of ['logo', 'logo2']) { css($(id), { width: LOGO + 'px', height: LOGO + 'px' });
+  $(id).dataset.f = 'drop-shadow(0 30px 40px rgba(21,33,63,.22))'; }
+
+const markSize = P ? 17 : 16.5;
+css($('mark'), { fontSize: markSize * U + 'px', lineHeight: 1, textAlign: P ? 'center' : 'left', width: P ? W + 'px' : 'auto' });
+css($('w2'), { fontSize: '0.32em', letterSpacing: '0.55em', paddingLeft: '0.1em' });
+css($('w4'), { fontSize: '0.3em', letterSpacing: '0.02em', color: 'var(--navy)' });
+$('w4').textContent = 'धर्म  ·  संस्कृति  ·  सेवा  ·  स्वदेशी  ·  समृद्धि';
+
+css($('qa'), { display: 'flex', alignItems: 'center', gap: 1.2 * U + 'px', fontSize: (P ? 9.6 : 15) * U + 'px' });
+css($('qmark'), { width: '1.1em', height: '1.65em', color: 'var(--navy)', flex: 'none' });
+const qlen = $('qpath').getTotalLength();
+css($('qpath'), { strokeDasharray: qlen, strokeDashoffset: qlen });
+
+css($('pillar'), { width: W + 'px', height: H + 'px' });
+css($('pword'), { fontSize: (P ? 23 : 34) * U + 'px', width: W + 'px', textAlign: 'center', lineHeight: 1.1 });
+css($('pcount'), { fontSize: 3.2 * U + 'px', letterSpacing: '0.4em', fontWeight: 600 });
+css($('pbar'), { height: 1.1 * U + 'px', borderRadius: U + 'px', transformOrigin: '0 50%' });
+
+css($('closer'), { fontSize: (P ? 12 : 15) * U + 'px', textAlign: 'center', width: W + 'px' });
+css($('pill'), { left: '-0.28em', top: '0.08em', right: '-0.28em', bottom: '-0.02em', width: 'auto', height: 'auto',
+  background: 'var(--saffron)', borderRadius: '0.3em', transformOrigin: '0 50%' });
+
+css($('wipe'), { width: W * 1.6 + 'px', height: H * 1.4 + 'px', background: 'var(--saffron)' });
+const IR = Math.hypot(W, H);
+css($('iris'), { width: IR + 'px', height: IR + 'px', borderRadius: '50%', background: 'var(--saffron)' });
+css($('iris2'), { width: IR + 'px', height: IR + 'px', borderRadius: '50%', background: 'var(--paper)' });
+
+css($('sub'), { display: 'flex', alignItems: 'center', gap: 1.4 * U + 'px', padding: `${1.9 * U}px ${4.2 * U}px`,
+  borderRadius: 99 + 'px', fontSize: (P ? 6 : 5.6) * U + 'px', fontWeight: 700, letterSpacing: '0.12em', color: '#fff',
+  boxShadow: '0 18px 40px rgba(196,78,20,.35)' });
+css($('bell'), { width: '1.15em', height: '1.15em', transformOrigin: '50% 10%' });
+css($('ripple'), { width: 30 * U + 'px', height: 30 * U + 'px', borderRadius: '50%', border: `${0.6 * U}px solid var(--saffron)` });
+css($('cursor'), { width: 7 * U + 'px', height: 7 * U + 'px', filter: 'drop-shadow(0 6px 10px rgba(0,0,0,.25))' });
+
+// ---------- helpers ----------
+// place: anchor element centre (or left edge with ax=0) at x,y
+function place(el, x, y, { s = 1, sx = 1, sy = 1, r = 0, o = 1, ax = 0.5, ay = 0.5, f = 'none' } = {}) {
+  css(el, { transform: `translate(${x}px,${y}px) translate(${-ax * 100}%,${-ay * 100}%) rotate(${r}deg) scale(${s * sx},${s * sy})`,
+    opacity: clamp(o), filter: [el.dataset.f, f === 'none' ? '' : f].filter(Boolean).join(' ') || 'none', visibility: o <= 0.001 ? 'hidden' : 'visible' });
+}
+// masked line reveal: inner span rises from below its mask, with motion blur
+function rise(el, t, t0, dur = 0.42, dist = 1.15, outAt = null, outDur = 0.3) {
+  const yIn = tt => kf(tt, [[t0, dist * 100], [t0 + dur, 0, 'outExpo']]);
+  const yOut = tt => outAt == null ? 0 : kf(tt, [[outAt, 0], [outAt + outDur, -dist * 100, 'inExpo']]);
+  const y = tt => yIn(tt) + yOut(tt);
+  const px = el.offsetHeight / 100;
+  const gone = t < t0 || (outAt != null && t > outAt + outDur);
+  css(el, { opacity: gone ? 0 : 1, transform: `translateY(${y(t)}%) scaleY(${1 + Math.min(.25, Math.abs(y(t) - y(t - 1 / 60)) * .012)})`,
+    filter: motionBlur(tt => [0, y(tt) * px], t, 0.05, 14) });
+}
+const show = (el, on) => css(el, { display: on ? (el.dataset.d || '') : 'none' });
+$('qa').dataset.d = 'flex'; $('sub').dataset.d = 'flex';
+
+// ---------- the composition ----------
+function draw(t) {
+  // global camera: impact shakes on the three hits
+  const sh = [B(1), B(12), B(24)].map(a => shake(t, a, 0.9 * U)).reduce((a, b) => [a[0] + b[0], a[1] + b[1]]);
+  css(stage, { transform: `translate(${sh[0]}px,${sh[1]}px)` });
+
+  // background: glow drifts across the frame; arcs rotate slowly
+  const gx = kf(t, [[0, W * 0.85], [7.5, W * 0.2, 'inOutCubic'], [15, W * 0.6, 'inOutCubic']]);
+  const gy = kf(t, [[0, H * 0.15], [7.5, H * 0.95, 'inOutCubic'], [15, H * 0.35, 'inOutCubic']]);
+  place($('glow'), gx, gy, { s: 1 + 0.05 * Math.sin(t * 1.3) });
+  css(arcs, { transform: `translate(${W * 0.95}px,${H * 1.02}px) translate(-50%,-50%) rotate(${t * 6}deg)` });
+  place($('sparkle'), W - 5 * U, H - 5 * U, { s: 0.75 + 0.25 * Math.abs(Math.sin(t * 2.4)), r: t * 20, o: 0.85 });
+
+  // ===== S1 · 0 – 3.75 s : wipe → logo slam → wordmark one word per beat
+  const s1 = t < B(8) + 0.05;
+  show($('logo'), s1); show($('mark'), s1); show($('pulse'), t < B(9) || (t > B(24) - .05 && t < B(30)));
+  if (s1) {
+    const out = kf(t, [[B(7.6), 0], [B(8), 1, 'inExpo']]);             // whip up and out
+    const outY = -out * H * 1.1;
+    const lx = P ? cx : kf(t, [[B(4), cx], [B(4) + 0.5, cx - W * 0.2, 'outExpo']]);
+    const ly = P ? kf(t, [[B(4), cy], [B(4) + 0.5, cy - H * 0.25, 'outExpo']]) : cy;
+    const ls = kf(t, [[B(1), 0.35], [B(1) + 0.55, 1, 'spring'], [B(4), 1.05, 'linear'], [B(4) + 0.5, P ? 0.72 : 0.78, 'outExpo']]);
+    const lr = kf(t, [[B(1), -14], [B(1) + 0.6, 0, 'spring']]);
+    const lyF = tt => ly + -kf(tt, [[B(7.6), 0], [B(8), 1, 'inExpo']]) * H * 1.1;
+    place($('logo'), lx, ly + outY, { s: ls, r: lr, o: t >= B(1) ? 1 : 0, f: motionBlur(tt => [0, lyF(tt)], t, 0.03, 30) });
+
+    // pulse rings from the logo on the slam
+    css(pulse, { transform: `translate(${lx}px,${ly + outY}px) translate(-50%,-50%)` });
+    [0, 1, 2].forEach(i => {
+      const p = clamp((t - B(1) - i * 0.09) / 0.9);
+      const c = $('pr' + i);
+      c.setAttribute('r', 100 + ease.outCubic(p) * 380);
+      c.setAttribute('stroke-opacity', p > 0 && p < 1 ? (1 - p) * 0.7 : 0);
+      c.setAttribute('stroke-width', 6 * (1 - p) + 1);
+    });
+
+    const mx = P ? 0 : W * 0.47, my = P ? cy + H * 0.12 : cy;
+    place($('mark'), mx, my + outY, { ax: 0, ay: 0.5, f: motionBlur(tt => [0, -kf(tt, [[B(7.6), 0], [B(8), 1, 'inExpo']]) * H * 1.1], t, 0.03, 30) });
+    rise($('w1'), t, B(4));
+    rise($('w2'), t, B(5), 0.36);
+    rise($('w3'), t, B(6));
+    rise($('w4'), t, B(7) - 0.12, 0.4);
+  }
+
+  // opening wipe: saffron slab sweeps across and reveals paper (0 – B1)
+  // later wipe: covers the cut from Q&A into the pillars (B15 – B16.5)
+  const wx = t < B(4)
+    ? kf(t, [[0, -0.35 * W], [B(1), 1.6 * W, 'inOutExpo']])
+    : kf(t, [[B(15), -1.7 * W], [B(16), -0.3 * W, 'inExpo'], [B(16.6), 1.8 * W, 'outExpo']]);
+  place($('wipe'), wx, cy, { r: -12, ax: 0.5, f: 'none', o: (t < B(1) + .01 || (t > B(15) && t < B(16.6))) ? 1 : 0 });
+
+  // ===== S2 · 3.75 – 7.5 s : question, silence, the answer lands on the drop
+  const s2 = t > B(7.5) && t < B(16.1);
+  show($('qa'), s2);
+  if (s2) {
+    const enter = kf(t, [[B(7.6), H * 0.9], [B(8.6), 0, 'outExpo']]);
+    const push = kf(t, [[B(8.6), 1], [B(12), 1.05, 'linear'], [B(12) + 0.02, 1.12], [B(12) + 0.5, 1, 'spring'], [B(16), 1.02, 'linear']]);
+    const lift = kf(t, [[B(12), 0.38], [B(12) + 0.45, 0, 'outExpo']]);           // block makes room for the answer
+    const qaF = tt => [0, kf(tt, [[B(7.6), H * 0.9], [B(8.6), 0, 'outExpo']])];
+    place($('qa'), cx, cy + enter + lift * $('qa').offsetHeight * 0.25, { s: push, f: motionBlur(qaF, t, 0.03, 30) });
+    css($('qpath'), { strokeDashoffset: qlen * (1 - ease.outCubic(clamp((t - B(8)) / 0.9))) });
+    css($('qmark'), { transform: `rotate(${Math.sin(t * 5) * 4 * clamp((t - B(9)) / 0.5) * (t < B(12) ? 1 : 0)}deg)` });
+    rise($('q1'), t, B(8) + 0.05, 0.5);
+    rise($('q2'), t, B(12), 0.38, 1.25);
+  }
+
+  // ===== S3 · 7.5 – 9.84 s : five pillars, one per beat, hard cuts
+  const pill = [
+    ['धर्म', 'var(--paper)', 'var(--navy)'],
+    ['संस्कृति', 'var(--saffron)', '#fff'],
+    ['सेवा', 'var(--navy)', '#fff'],
+    ['स्वदेशी', 'var(--saffron-deep)', '#fff'],
+    ['समृद्धि', 'var(--paper)', 'var(--saffron)'],
+  ];
+  const s3 = t >= B(16) && t < B(21);
+  show($('pillar'), s3);
+  if (s3) {
+    const i = Math.min(4, Math.floor((t - B(16)) / (B(1))));
+    const tb = B(16 + i), [word, bg, fg] = pill[i];
+    css($('pillar'), { background: bg });
+    if ($('pword').textContent !== word) $('pword').textContent = word;
+    const s = kf(t, [[tb, 1.45], [tb + 0.22, 1, 'outExpo'], [tb + B(1), 0.97, 'linear']]);
+    const bl = kf(t, [[tb, 16], [tb + 0.16, 0, 'outCubic']]);
+    css($('pword'), { color: fg });
+    place($('pword'), cx, cy - 1.5 * U, { s, f: bl > 0.3 ? `blur(${bl}px)` : 'none' });
+    const bw = $('pword').offsetWidth ? Math.min(W * 0.5, 22 * U) : 0;
+    css($('pbar'), { width: bw + 'px', background: fg === '#fff' ? '#fff' : 'var(--saffron)' });
+    place($('pbar'), cx - bw / 2, cy + (P ? 20 : 22) * U, { ax: 0, sx: ease.outExpo(clamp((t - tb) / 0.35)) });
+    css($('pcount'), { color: fg, opacity: 0.75 });
+    $('pcount').textContent = `0${i + 1} / 05`;
+    place($('pcount'), cx, cy - (P ? 24 : 27) * U);
+  }
+
+  // ===== S4 · 9.84 – 11.25 s : "Shop नहीं… फिर भी Business है!"
+  const s4 = t >= B(21) && t < B(24.2);
+  show($('closer'), s4);
+  if (s4) {
+    const zoom = kf(t, [[B(21), 1], [B(24), 1.06, 'linear']]);
+    place($('closer'), cx, cy, { s: zoom });
+    rise($('c1'), t, B(21), 0.36);
+    rise($('c2'), t, B(22), 0.36);
+    const pp = ease.outExpo(clamp((t - B(23)) / 0.35));
+    css($('pill'), { transform: `scaleX(${pp})` });
+    rise($('c3'), t, B(23) + 0.08, 0.36);
+  }
+
+  // iris: saffron closes in, paper opens out on the drop (B23.5 – B24.8)
+  const ir1 = kf(t, [[B(23.4), 0], [B(24), 1.05, 'inExpo']]);
+  const ir2 = kf(t, [[B(24), 0], [B(24) + 0.55, 1.05, 'outExpo']]);
+  place($('iris'), cx, cy, { s: ir1, o: t > B(23.4) && t < B(25.5) ? 1 : 0 });
+  place($('iris2'), cx, cy, { s: ir2, o: t >= B(24) && t < B(25.5) ? 1 : 0 });
+
+  // ===== S5 · 11.25 – 15 s : logo resolve, subscribe, tap
+  const s5 = t >= B(24);
+  show($('logo2'), s5); show($('sub'), s5); show($('cursor'), s5); show($('ripple'), s5);
+  if (s5) {
+    const ly = P ? cy - H * 0.08 : cy - H * 0.1;
+    const ls = kf(t, [[B(24), 0.3], [B(24) + 0.6, 1, 'spring'], [B(30), 0.94, 'linear'], [B(30) + 0.05, 0.99], [B(30) + 0.5, 0.95, 'spring'], [15, 0.94, 'linear']]);
+    place($('logo2'), cx, ly, { s: ls * (P ? 1 : 0.92), r: kf(t, [[B(24), 18], [B(24) + 0.65, 0, 'spring']]) });
+    css(pulse, { transform: `translate(${cx}px,${ly}px) translate(-50%,-50%)` });
+    [0, 1, 2].forEach(i => {
+      const p = clamp((t - B(24) - i * 0.1) / 1.0);
+      const c = $('pr' + i);
+      c.setAttribute('r', 120 + ease.outCubic(p) * 400);
+      c.setAttribute('stroke-opacity', p > 0 && p < 1 ? (1 - p) * 0.7 : 0);
+      c.setAttribute('stroke-width', 6 * (1 - p) + 1);
+    });
+
+    const by = P ? cy + H * 0.26 : cy + H * 0.355;
+    const tap = B(28);
+    const done = t >= tap;
+    const bs = kf(t, [[B(26), 0.4], [B(26) + 0.5, 1, 'spring'], [tap - 0.04, 1], [tap + 0.04, 0.9, 'outCubic'], [tap + 0.45, 1, 'spring']]);
+    css($('sub'), { background: done ? 'var(--navy)' : 'var(--saffron)',
+      boxShadow: done ? '0 18px 40px rgba(21,33,63,.35)' : '0 18px 40px rgba(196,78,20,.35)' });
+    const txt = done ? 'SUBSCRIBED  ✓' : 'SUBSCRIBE';
+    if ($('subtxt').textContent !== txt) $('subtxt').textContent = txt;
+    place($('sub'), cx, by + kf(t, [[B(26), 6 * U], [B(26) + 0.45, 0, 'outExpo']]), { s: bs, o: kf(t, [[B(26), 0], [B(26) + 0.12, 1]]) });
+    const ring = t > tap ? Math.sin((t - tap) * 38) * 22 * Math.exp(-(t - tap) * 4) : 0;
+    css($('bell'), { transform: `rotate(${ring}deg)` });
+
+    const rp = clamp((t - tap) / 0.6);
+    place($('ripple'), cx, by, { s: 0.2 + ease.outCubic(rp) * 1.3, o: rp > 0 && rp < 1 ? (1 - rp) * 0.9 : 0 });
+
+    const cxF = tt => [kf(tt, [[B(27), W + 8 * U], [tap - 0.05, cx + 4 * U, 'outCubic'], [B(30), cx + 6 * U], [B(31), W + 10 * U, 'inCubic']]),
+                       kf(tt, [[B(27), H + 6 * U], [tap - 0.05, by + 1.5 * U, 'outCubic'], [B(30), by + 3 * U], [B(31), H + 12 * U, 'inCubic']])];
+    const [kx, ky] = cxF(t);
+    place($('cursor'), kx, ky, { ax: 0.15, ay: 0.08, s: t > tap - 0.05 && t < tap + 0.12 ? 0.85 : 1, f: motionBlur(cxF, t, 0.03, 12) });
+  }
+}
+
+KI.compose({ duration: 15, fps: 30, draw });
+</script>
+</body>
+</html>
