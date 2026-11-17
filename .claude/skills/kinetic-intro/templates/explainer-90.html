@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>Vocal for Sanatan — 90s Introduction</title>
+<style>
+  @font-face { font-family: Poppins; font-weight: 600; src: url(assets/fonts/poppins-latin-600-normal.woff2) format('woff2'); }
+  @font-face { font-family: Poppins; font-weight: 700; src: url(assets/fonts/poppins-latin-700-normal.woff2) format('woff2'); }
+  @font-face { font-family: Poppins; font-weight: 800; src: url(assets/fonts/poppins-latin-800-normal.woff2) format('woff2'); }
+  @font-face { font-family: Hind; font-weight: 600; src: url(assets/fonts/hind-devanagari-600-normal.woff2) format('woff2'); }
+  @font-face { font-family: Hind; font-weight: 700; src: url(assets/fonts/hind-devanagari-700-normal.woff2) format('woff2'); }
+  :root {
+    --saffron: #E8641C; --saffron-deep: #C44E14; --saffron-soft: #F7B27A;
+    --navy: #15213F; --ink-2: #5A6275; --paper: #F5F2ED;
+  }
+  html, body { margin: 0; background: #111; overflow: hidden; }
+  #stage { position: relative; overflow: hidden; background: var(--paper); font-family: Poppins, Hind, sans-serif; font-weight: 700; color: var(--navy); }
+  #stage * { box-sizing: border-box; }
+  .abs { position: absolute; left: 0; top: 0; }
+  .line { overflow: hidden; display: block; padding: 0.08em 0.06em 0.03em; line-height: 1.14; }
+  .line > span { display: inline-block; position: relative; }
+  .pill { position: absolute; left: -0.25em; right: -0.25em; top: 0.06em; bottom: 0; border-radius: 0.28em; transform-origin: 0 50%; z-index: -1; }
+  .small { font-family: Poppins, Hind; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; }
+  .card { position: absolute; left: 0; top: 0; background: #fff; border-radius: 1.4em; box-shadow: 0 1.2em 2.6em rgba(21,33,63,.14);
+          padding: 1.4em 1.5em 1.5em; display: flex; flex-direction: column; gap: .45em; }
+  .num { width: 2.6em; height: 2.6em; border-radius: 50%; background: var(--saffron); color: #fff; display: grid; place-items: center; font-weight: 800; }
+  .ch { font-family: Hind, Poppins; font-weight: 700; font-size: 2.3em; line-height: 1.1; color: var(--navy); }
+  .cs { font-family: Hind, Poppins; font-weight: 600; font-size: 1.15em; line-height: 1.3; color: var(--ink-2); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="glow" class="abs"></div>
+  <svg id="arcs" class="abs" viewBox="-500 -500 1000 1000"></svg>
+  <div id="scenes" class="abs"></div>
+  <svg id="pulse" class="abs" viewBox="-500 -500 1000 1000"></svg>
+  <div id="wipe" class="abs"></div>
+  <div id="iris" class="abs"></div>
+  <div id="iris2" class="abs"></div>
+  <svg id="sparkle" class="abs" viewBox="-50 -50 100 100"><path d="M0-48C4-12 12-4 48 0 12 4 4 12 0 48-4 12-12 4-48 0-12-4-4-12 0-48Z" fill="#fff"/></svg>
+  <svg id="cursor" class="abs" viewBox="0 0 32 32"><path d="M6 3l19 12-8.5 1.6 5 9.4-3.6 1.8-5-9.4L6 24Z" fill="#fff" stroke="#15213F" stroke-width="1.8" stroke-linejoin="round"/></svg>
+</div>
+<script src="engine.js"></script>
+<script>
+const qs = new URLSearchParams(location.search);
+const W = +(qs.get('w') || 1920), H = +(qs.get('h') || 1080);
+const P = H > W, U = Math.min(W, H) / 100, cx = W / 2, cy = H / 2;
+const { kf, ease, clamp, motionBlur, shake, grid, css } = KI;
+const B = grid(128);                       // 192 beats = 90.0 s
+const DUR = 90;
+const $ = id => document.getElementById(id);
+const stage = $('stage');
+css(stage, { width: W + 'px', height: H + 'px' });
+const sz = (l, p) => (P ? p : l) * U + 'px';
+const NAVY = 'var(--navy)', SAFF = 'var(--saffron)', DEEP = 'var(--saffron-deep)', PAPER = 'var(--paper)', WHITE = '#fff';
+
+// ---------- background system ----------
+css($('glow'), { width: W * 1.6 + 'px', height: W * 1.6 + 'px', borderRadius: '50%',
+  background: 'radial-gradient(circle, rgba(247,178,122,.42) 0%, rgba(232,100,28,.12) 30%, rgba(245,242,237,0) 65%)' });
+const arcs = $('arcs');
+css(arcs, { width: Math.max(W, H) * 1.5 + 'px', height: Math.max(W, H) * 1.5 + 'px' });
+arcs.innerHTML = [90, 150, 210, 270, 330, 390, 450].map((r, i) =>
+  `<circle r="${r}" fill="none" stroke="${i % 3 === 1 ? '#E8641C' : '#B9B2A8'}" stroke-opacity="${i % 3 === 1 ? .22 : .28}"
+     stroke-width="${i % 2 ? 1.2 : 2.4}" stroke-dasharray="${i % 2 ? '4 10' : `${r * 2.2} ${r * 4}`}"/>`).join('');
+const pulse = $('pulse');
+css(pulse, { width: H * 1.6 + 'px', height: H * 1.6 + 'px' });
+pulse.innerHTML = [0, 1, 2].map(i => `<circle id="pr${i}" r="100" fill="none" stroke="#E8641C" stroke-width="3"/>`).join('');
+css($('sparkle'), { width: 4.2 * U + 'px', height: 4.2 * U + 'px' });
+css($('wipe'), { width: W * 1.6 + 'px', height: H * 1.4 + 'px', background: SAFF });
+const IR = Math.hypot(W, H);
+css($('iris'), { width: IR + 'px', height: IR + 'px', borderRadius: '50%', background: SAFF });
+css($('iris2'), { width: W + 'px', height: H + 'px' });
+css($('cursor'), { width: 7 * U + 'px', height: 7 * U + 'px', filter: 'drop-shadow(0 6px 10px rgba(0,0,0,.25))' });
+
+// ---------- helpers ----------
+function place(el, x, y, { s = 1, sx = 1, sy = 1, r = 0, o = 1, ax = 0.5, ay = 0.5, f = 'none' } = {}) {
+  css(el, { transform: `translate(${x}px,${y}px) translate(${-ax * 100}%,${-ay * 100}%) rotate(${r}deg) scale(${s * sx},${s * sy})`,
+    opacity: clamp(o), filter: [el.dataset.f, f === 'none' ? '' : f].filter(Boolean).join(' ') || 'none',
+    visibility: o <= 0.001 ? 'hidden' : 'visible' });
+}
+function rise(el, t, t0, dur = 0.42, dist = 1.15) {
+  const y = tt => kf(tt, [[t0, dist * 100], [t0 + dur, 0, 'outExpo']]);
+  const px = el.offsetHeight / 100;
+  css(el, { opacity: t < t0 ? 0 : 1,
+    transform: `translateY(${y(t)}%) scaleY(${1 + Math.min(.25, Math.abs(y(t) - y(t - 1 / 60)) * .012)})`,
+    filter: motionBlur(tt => [0, y(tt) * px], t, 0.05, 14) });
+}
+function mk(tag, cls, parent, html) {
+  const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html;
+  parent.appendChild(e); return e;
+}
+// whole-scene content exit: whip up in the last 0.28 s
+const exitY = (t, t1) => -kf(t, [[t1 - 0.28, 0], [t1, 1, 'inExpo']]) * H * 0.9;
+const exitBlur = (t, t1) => motionBlur(tt => [0, exitY(tt, t1)], t, 0.03, 30);
+function rings(t, at, x, y, r0 = 100) {
+  css(pulse, { transform: `translate(${x}px,${y}px) translate(-50%,-50%)` });
+  [0, 1, 2].forEach(i => {
+    const p = clamp((t - at - i * 0.09) / 0.95), c = $('pr' + i);
+    c.setAttribute('r', r0 + ease.outCubic(p) * 380);
+    c.setAttribute('stroke-opacity', p > 0 && p < 1 ? (1 - p) * 0.7 : 0);
+    c.setAttribute('stroke-width', 6 * (1 - p) + 1);
+  });
+}
+// build lines: [{html, at, color, size, pill, cls}]
+function buildLines(box, lines) {
+  return lines.map(l => {
+    const ln = mk('span', 'line', box);
+    if (l.pill) css(ln, { padding: '0.1em 0.4em 0.06em' });
+    const inner = mk('span', l.cls || '', ln, (l.pill ? '<i class="pill"></i>' : '') + l.html);
+    css(inner, { color: l.color || NAVY, fontSize: (l.size || 1) + 'em', fontWeight: l.w || 700 });
+    if (l.pill) css(inner.querySelector('.pill'), { background: l.pill });
+    return { ...l, el: inner, pillEl: inner.querySelector('.pill') };
+  });
+}
+function drawLines(t, b0, L) {
+  L.forEach(l => {
+    rise(l.el, t, B(b0 + l.at), l.dur || 0.42);
+    if (l.pillEl) css(l.pillEl, { transform: `scaleX(${ease.outExpo(clamp((t - B(b0 + l.at) - 0.05) / 0.4))})` });
+  });
+}
+
+// ---------- scene types ----------
+const scenes = [];
+const root = (bg) => { const r = mk('div', 'abs', $('scenes')); css(r, { width: W + 'px', height: H + 'px', background: bg || 'transparent', display: 'none' }); return r; };
+
+function statement(b0, b1, { bg, lines, size = [13, 11], align = 'center' }) {
+  const r = root(bg);
+  const box = mk('div', 'abs', r);
+  css(box, { width: W * (P ? 0.9 : 0.86) + 'px', textAlign: align, fontSize: sz(...size) });
+  const L = buildLines(box, lines);
+  scenes.push({ b0, b1, r, draw(t) {
+    place(box, cx, cy + exitY(t, B(b1)), { s: kf(t, [[B(b0), 1], [B(b1), 1.05, 'linear']]), f: exitBlur(t, B(b1)) });
+    drawLines(t, b0, L);
+  } });
+}
+
+function qa(b0, b1, { q, answers, dropAt }) {
+  const r = root();
+  const box = mk('div', 'abs', r);
+  css(box, { display: 'flex', alignItems: 'center', gap: 1.2 * U + 'px', fontSize: sz(13, 8.6) });
+  box.innerHTML = `<svg viewBox="0 0 100 150" style="width:1.1em;height:1.65em;flex:none;color:var(--navy)"><path d="M22 46C22 22 40 10 56 10 76 10 90 24 90 42 90 60 78 68 66 76 58 82 54 88 54 100M50 128a8 8 0 1 0 0.1 0" fill="none" stroke="currentColor" stroke-width="6.5" stroke-linecap="round"/></svg><div></div>`;
+  const path = box.querySelector('path'), svg = box.querySelector('svg');
+  const L = buildLines(box.lastChild, [{ html: q, at: 0.1 }, ...answers]);
+  scenes.push({ b0, b1, r, draw(t) {
+    const len = path.getTotalLength();
+    css(path, { strokeDasharray: len, strokeDashoffset: len * (1 - ease.outCubic(clamp((t - B(b0)) / 0.9))) });
+    css(svg, { transform: `rotate(${t < B(dropAt) ? Math.sin(t * 5) * 4 * clamp((t - B(b0 + 1)) / 0.5) : 0}deg)` });
+    const push = kf(t, [[B(b0), 1], [B(dropAt), 1.05, 'linear'], [B(dropAt) + 0.02, 1.12], [B(dropAt) + 0.5, 1, 'spring'], [B(b1), 1.02, 'linear']]);
+    const enter = kf(t, [[B(b0) - 0.2, H * 0.9], [B(b0) + 0.6, 0, 'outExpo']]);
+    place(box, cx, cy + enter + exitY(t, B(b1)), { s: push, f: exitBlur(t, B(b1)) });
+    drawLines(t, b0, L);
+  } });
+}
+
+function rapid(b0, items, { counter = true, size = [30, 21] } = {}) {
+  const r = root();
+  const word = mk('div', 'abs deva', r), bar = mk('div', 'abs', r), cnt = mk('div', 'abs small', r);
+  css(word, { fontSize: sz(...size), width: W + 'px', textAlign: 'center', lineHeight: 1.15, fontFamily: 'Hind, Poppins' });
+  css(bar, { height: 1.1 * U + 'px', width: 22 * U + 'px', borderRadius: U + 'px', transformOrigin: '0 50%' });
+  css(cnt, { fontSize: 3 * U + 'px' });
+  const n = items.length;
+  scenes.push({ b0, b1: b0 + n, r, draw(t) {
+    const i = Math.min(n - 1, Math.floor((t - B(b0)) / B(1)));
+    const tb = B(b0 + i), [txt, bg, fg] = items[i];
+    css(r, { background: bg });
+    if (word.innerHTML !== txt) word.innerHTML = txt;
+    const bl = kf(t, [[tb, 16], [tb + 0.16, 0]]);
+    css(word, { color: fg });
+    place(word, cx, cy - 1.5 * U, { s: kf(t, [[tb, 1.45], [tb + 0.22, 1, 'outExpo'], [tb + B(1), 0.97, 'linear']]), f: bl > .3 ? `blur(${bl}px)` : 'none' });
+    css(bar, { background: fg === WHITE ? WHITE : SAFF });
+    place(bar, cx - 11 * U, cy + (P ? 17 : 21) * U, { ax: 0, sx: ease.outExpo(clamp((t - tb) / 0.35)) });
+    if (counter) { css(cnt, { color: fg, opacity: .75 }); cnt.textContent = `${String(i + 1).padStart(2, '0')} / ${String(n).padStart(2, '0')}`; place(cnt, cx, cy - (P ? 20 : 25) * U); }
+  } });
+}
+
+function split(b0, b1, A, Bp) {
+  const r = root();
+  const panes = [A, Bp].map((p, k) => {
+    const pane = mk('div', 'abs', r);
+    css(pane, { width: (P ? W : W / 2) + 'px', height: (P ? H / 2 : H) + 'px', background: p.bg, display: 'flex', flexDirection: 'column',
+      justifyContent: 'center', alignItems: 'center', textAlign: 'center', padding: 4 * U + 'px', fontSize: sz(8.5, 8.5) });
+    const L = buildLines(pane, [{ html: p.label, at: p.at, color: p.fg, size: 0.32, cls: 'small', w: 600 },
+      ...p.lines.map((h, j) => ({ html: h, at: p.at + 1 + j, color: j === p.lines.length - 1 ? p.hi : p.fg }))]);
+    return { pane, L, at: p.at, k };
+  });
+  scenes.push({ b0, b1, r, draw(t) {
+    panes.forEach(({ pane, L, at, k }) => {
+      const sl = kf(t, [[B(b0 + at), 1], [B(b0 + at) + 0.5, 0, 'outExpo']]);
+      const ex = exitY(t, B(b1));
+      if (P) place(pane, 0, k * H / 2 + ex, { ax: 0, ay: 0, sx: 1, o: 1, f: 'none' }), css(pane, { transform: `translate(${(k ? 1 : -1) * sl * W}px,${k * H / 2 + ex}px)` });
+      else css(pane, { transform: `translate(${k * W / 2 + (k ? 1 : -1) * sl * W / 2}px,${ex}px)` });
+      drawLines(t, b0, L);
+    });
+  } });
+}
+
+function steps(b0, b1, { title, sub, items }) {
+  const r = root();
+  const head = mk('div', 'abs', r);
+  css(head, { textAlign: 'center', width: W * 0.9 + 'px', fontSize: sz(6.4, 6.2) });
+  const HL = buildLines(head, [{ html: sub, at: 0, color: SAFF, size: 0.42, cls: 'small', w: 600 }, { html: title, at: 0.5 }]);
+  const cw = P ? W * 0.84 : W * 0.29;
+  const cards = items.map((it, i) => {
+    const c = mk('div', 'card', r, `<div class="num">0${i + 1}</div><div class="ch">${it.head}</div><div class="cs">${it.sub}</div>`);
+    css(c, { width: cw + 'px', fontSize: sz(3.1, 2.9) });
+    return { c, at: it.at };
+  });
+  const link = mk('div', 'abs', r); r.insertBefore(link, r.firstChild);
+  css(link, { background: SAFF, borderRadius: '9px', transformOrigin: P ? '50% 0' : '0 50%' });
+  scenes.push({ b0, b1, r, draw(t) {
+    const ex = exitY(t, B(b1)), f = exitBlur(t, B(b1));
+    place(head, cx, (P ? H * 0.17 : H * 0.2) + ex, { f });
+    drawLines(t, b0, HL);
+    const pos = i => P ? [cx, H * 0.39 + i * H * 0.19] : [cx + (i - 1) * W * 0.31, H * 0.62];
+    // connector grows card to card
+    const prog = kf(t, [[B(b0 + items[0].at), 0], [B(b0 + items[items.length - 1].at), 1, 'inOutCubic']]);
+    if (P) { css(link, { width: 0.6 * U + 'px', height: H * 0.38 + 'px' }); place(link, cx, H * 0.39 + ex, { ax: 0.5, ay: 0, sy: prog, o: .5, f }); }
+    else { css(link, { width: W * 0.62 + 'px', height: 0.6 * U + 'px' }); place(link, cx - W * 0.31, H * 0.62 + ex, { ax: 0, sx: prog, o: .5, f }); }
+    cards.forEach(({ c, at }, i) => {
+      const t0 = B(b0 + at), [x, y] = pos(i);
+      const yy = kf(t, [[t0, 14 * U], [t0 + 0.5, 0, 'outExpo']]);
+      const yF = tt => [0, kf(tt, [[t0, 14 * U], [t0 + 0.5, 0, 'outExpo']]) + exitY(tt, B(b1))];
+      place(c, x, y + yy + ex, { s: kf(t, [[t0, 0.85], [t0 + 0.55, 1, 'spring']]) * (t >= t0 && t < t0 + B(4) ? 1.0 : 0.97),
+        o: t < t0 ? 0 : 1, f: motionBlur(yF, t, 0.03, 20) });
+    });
+  } });
+}
+
+// logo scene: slam, then move aside (landscape) / up (portrait) and stack lines; optional CTA button + tap
+function logoScene(b0, b1, { lines, moveAt = 3, size = [11, 10.5], cta, ringsOn = true }) {
+  const r = root();
+  const img = mk('img', 'abs', r); img.src = 'assets/logo.png';
+  const LOGO = P ? W * 0.74 : H * 0.62;
+  css(img, { width: LOGO + 'px', height: LOGO + 'px' }); img.dataset.f = 'drop-shadow(0 30px 40px rgba(21,33,63,.22))';
+  const box = mk('div', 'abs', r);
+  css(box, { fontSize: sz(...size), textAlign: P ? 'center' : 'left', width: P ? W * 0.92 + 'px' : W * 0.5 + 'px' });
+  const L = buildLines(box, lines);
+  let btn, txt, bell;
+  if (cta) {
+    btn = mk('div', 'abs', r, `<svg viewBox="0 0 24 24" style="width:1.1em;height:1.1em;transform-origin:50% 10%"><path d="M12 22a2.5 2.5 0 0 0 2.4-2h-4.8A2.5 2.5 0 0 0 12 22Zm7-6V11a7 7 0 0 0-5.5-6.8V3.5a1.5 1.5 0 0 0-3 0v.7A7 7 0 0 0 5 11v5l-2 2v1h18v-1Z" fill="currentColor"/></svg><span></span>`);
+    css(btn, { display: 'flex', alignItems: 'center', gap: 1.3 * U + 'px', padding: `${1.8 * U}px ${4 * U}px`, borderRadius: '99px',
+      fontSize: sz(5.4, 5.6), color: '#fff', fontFamily: 'Hind, Poppins', letterSpacing: '0.04em', whiteSpace: 'nowrap' });
+    txt = btn.querySelector('span'); bell = btn.querySelector('svg');
+  }
+  scenes.push({ b0, b1, r, draw(t) {
+    const tS = B(b0), tM = B(b0 + moveAt);
+    const lx = P ? cx : kf(t, [[tM, cx], [tM + 0.5, W * 0.27, 'outExpo']]);
+    const ly = P ? kf(t, [[tM, cy], [tM + 0.5, H * 0.24, 'outExpo']]) : cy;
+    const ls = kf(t, [[tS, 0.3], [tS + 0.6, 1, 'spring'], [tM, 1.04, 'linear'], [tM + 0.5, P ? 0.66 : 0.78, 'outExpo'], [B(b1), P ? 0.64 : 0.75, 'linear']]);
+    const ex = exitY(t, B(b1)), f = exitBlur(t, B(b1));
+    place(img, lx, ly + ex, { s: ls, r: kf(t, [[tS, 16], [tS + 0.65, 0, 'spring']]), f });
+    if (ringsOn) { css(pulse, { display: t < tS + 1.3 ? '' : 'none' }); rings(t, tS, lx, ly); }
+    const bx = P ? cx : W * 0.5, byy = P ? H * 0.6 : cy - (cta ? 5 * U : 0);
+    place(box, bx, byy + ex, { ax: P ? 0.5 : 0, f });
+    drawLines(t, b0, L);
+    if (cta) {
+      const tA = B(b0 + cta.at), tap = B(b0 + cta.tap), done = t >= tap;
+      css(btn, { background: done ? NAVY : SAFF, boxShadow: done ? '0 18px 40px rgba(21,33,63,.35)' : '0 18px 40px rgba(196,78,20,.35)' });
+      const s = done ? cta.done : cta.text; if (txt.textContent !== s) txt.textContent = s;
+      const btx = P ? cx : W * 0.5, bty = P ? H * 0.86 : H * 0.8;
+      place(btn, btx, bty + kf(t, [[tA, 6 * U], [tA + 0.45, 0, 'outExpo']]) + ex,
+        { ax: P ? 0.5 : 0, s: kf(t, [[tA, 0.4], [tA + 0.5, 1, 'spring'], [tap - .04, 1], [tap + .04, .9], [tap + .45, 1, 'spring']]), o: t < tA ? 0 : 1 });
+      css(bell, { transform: `rotate(${t > tap ? Math.sin((t - tap) * 38) * 22 * Math.exp(-(t - tap) * 4) : 0}deg)` });
+      const bw = btn.offsetWidth;
+      const tx = P ? cx : W * 0.5 + bw * 0.55;
+      const cF = tt => [kf(tt, [[tap - 1, W + 8 * U], [tap - .05, tx + 2 * U, 'outCubic'], [tap + 1, tx + 4 * U], [tap + 1.8, W + 10 * U, 'inCubic']]),
+                        kf(tt, [[tap - 1, H + 6 * U], [tap - .05, bty + 1.5 * U, 'outCubic'], [tap + 1, bty + 3 * U], [tap + 1.8, H + 12 * U, 'inCubic']])];
+      const [kx, ky] = cF(t);
+      css($('cursor'), { display: t > tap - 1 && t < tap + 1.8 ? '' : 'none' });
+      place($('cursor'), kx, ky, { ax: .15, ay: .08, s: t > tap - .05 && t < tap + .12 ? .85 : 1, f: motionBlur(cF, t, .03, 12) });
+    }
+  } });
+}
+
+// ================= THE SCRIPT (beats; 4 beats = 1 bar = 1.875 s) =================
+const D = s => `<span style="font-family:Hind,Poppins;letter-spacing:0">${s}</span>`;
+
+// Act 1 — hook (0–15 s)
+logoScene(1, 8, { moveAt: 3, size: [16.5, 17], lines: [
+  { html: 'VOCAL', at: 3, w: 800 },
+  { html: 'FOR', at: 4, color: SAFF, size: 0.32, cls: 'small' },
+  { html: 'SANATAN', at: 5, color: SAFF, w: 800 },
+  { html: D('धर्म · संस्कृति · सेवा · स्वदेशी · समृद्धि'), at: 6, size: 0.3, w: 600 },
+] });
+qa(8, 16, { q: `Shop ${D('नहीं है?')}`, dropAt: 12, answers: [
+  { html: D('दुकान हो या न हो,'), at: 4, color: SAFF, dur: .38 },
+  { html: D('भरोसा पूरा है।'), at: 6, color: SAFF, dur: .38 },
+] });
+statement(16, 24, { bg: NAVY, size: [15, 13], lines: [
+  { html: 'Service Provider', at: 0, color: 'var(--saffron-soft)', size: 0.26, cls: 'small', w: 600 },
+  { html: D('हुनर है…'), at: 0.5, color: WHITE },
+  { html: D('पर पहचान नहीं।'), at: 3, color: SAFF },
+] });
+statement(24, 32, { size: [15, 13], lines: [
+  { html: D('ग्राहक'), at: 0, color: SAFF, size: 0.3, cls: 'small', w: 600 },
+  { html: D('ज़रूरत है…'), at: 0.5 },
+  { html: D('पर भरोसेमंद कौन?'), at: 3, color: SAFF },
+] });
+
+// Act 2 — the gap (15–18.75 s)
+split(32, 40,
+  { at: 0, bg: PAPER, fg: NAVY, hi: SAFF, label: D('ग्राहक'), lines: [D('अच्छा कारीगर'), D('कहाँ मिले?')] },
+  { at: 3, bg: SAFF, fg: WHITE, hi: NAVY, label: 'Service Provider', lines: [D('काम आता है,'), D('ग्राहक कहाँ मिलें?')] });
+
+// Act 3 — the answer (18.75–30 s)
+logoScene(40, 56, { moveAt: 3, size: [10.5, 10.5], lines: [
+  { html: D('पेश है'), at: 4, color: SAFF, size: 0.36, cls: 'small', w: 600 },
+  { html: D('एक App,'), at: 5 },
+  { html: D('जो अपनों को'), at: 7 },
+  { html: D('अपनों से जोड़े।'), at: 9, color: SAFF },
+] });
+statement(56, 64, { size: [17, 14], lines: [
+  { html: D('आपके पास,'), at: 0 },
+  { html: D('आपके अपने।'), at: 2, color: SAFF },
+  { html: 'Find your people. Grow together.', at: 4.5, size: 0.2, cls: 'small', w: 600, color: 'var(--ink-2)' },
+] });
+
+// Act 4 — how it works (30–52.5 s)
+steps(64, 88, { sub: 'For customers', title: D('ग्राहक के लिए'), items: [
+  { at: 4, head: D('खोजें'), sub: D('अपने आस-पास की services और shops') },
+  { at: 10, head: D('देखें'), sub: D('Profile, services और working hours') },
+  { at: 16, head: D('जुड़ें'), sub: D('सीधे अपने इलाके के कारीगर से') },
+] });
+steps(88, 112, { sub: 'For business & service providers', title: D('Business और Service Provider के लिए'), items: [
+  { at: 4, head: D('Register करें'), sub: D('Product या Service — अपना type चुनें') },
+  { at: 10, head: D('Profile बनाइए'), sub: D('नाम, services और working hours') },
+  { at: 16, head: D('ग्राहक पाइए'), sub: D('आपके इलाके के लोग, सीधे आप तक') },
+] });
+
+// Act 5 — everyone belongs here (52.5–67.5 s)
+const cats = ['Electrician', 'Plumber', 'बढ़ई', 'Painter', 'दर्ज़ी', 'Mechanic', 'Tutor', 'Beauty Parlour',
+  'किराना', 'मिठाई', 'डेयरी', 'हस्तशिल्प', 'पंडित जी', 'मेहंदी', 'Tiffin', 'और भी बहुत कुछ…'];
+const cyc = [[PAPER, NAVY], [SAFF, WHITE], [NAVY, WHITE], [DEEP, WHITE]];
+rapid(112, cats.map((w, i) => [D(w), ...(i === 15 ? [SAFF, WHITE] : cyc[i % 4])]), { size: [19, 14] });
+rapid(128, [['धर्म', PAPER, NAVY], ['संस्कृति', SAFF, WHITE], ['सेवा', NAVY, WHITE], ['स्वदेशी', DEEP, WHITE], ['समृद्धि', PAPER, SAFF]].map(([w, b, f]) => [D(w), b, f]),
+  { size: [34, 23] });
+statement(133, 144, { size: [12.5, 10.5], lines: [
+  { html: D('हर हुनर को पहचान,'), at: 0 },
+  { html: D('हर ज़रूरत को अपना साथ।'), at: 3, color: WHITE, pill: SAFF },
+] });
+
+// Act 6 — the heart (67.5–82.5 s)
+statement(144, 160, { bg: SAFF, size: [12.5, 11], lines: [
+  { html: D('दुकान हो या न हो,'), at: 0, color: WHITE },
+  { html: D('पहचान है, हुनर है,'), at: 3, color: WHITE },
+  { html: D('और भरोसा पूरा है।'), at: 6, color: WHITE, pill: NAVY },
+] });
+statement(160, 176, { bg: NAVY, size: [13, 11.5], lines: [
+  { html: D('अपनों से खरीदें,'), at: 0, color: WHITE },
+  { html: D('अपनों को आगे बढ़ाएँ।'), at: 4, color: SAFF },
+  { html: D('स्वदेशी अपनाएँ · Vocal for Sanatan'), at: 8, size: 0.24, cls: 'small', w: 600, color: 'var(--saffron-soft)' },
+] });
+
+// Act 7 — resolve + CTA (82.5–90 s)
+logoScene(176, 193, { moveAt: 3, size: [12.5, 11], lines: [
+  { html: D('आपके पास,'), at: 4 },
+  { html: D('आपके अपने।'), at: 5, color: SAFF },
+  { html: 'Find your people. Grow together.', at: 7, size: 0.24, cls: 'small', w: 600, color: 'var(--ink-2)' },
+], cta: { at: 9, tap: 11, text: 'आज ही जुड़ें', done: 'जुड़ गए ✓' } });
+
+// transitions: [beat] saffron iris closes in before, paper opens after
+const irises = [40, 176];
+const wipes = [0, 16, 112];
+const hits = [1, 12, 40, 56, 112, 128, 176].map(B);
+
+function draw(t) {
+  const sh = hits.map(a => shake(t, a, 0.9 * U)).reduce((a, b) => [a[0] + b[0], a[1] + b[1]]);
+  css(stage, { transform: `translate(${sh[0]}px,${sh[1]}px)` });
+  const ph = t / DUR;
+  place($('glow'), W * (0.5 + 0.4 * Math.sin(ph * 6.28 * 2)), H * (0.5 + 0.45 * Math.cos(ph * 6.28 * 3)), { s: 1 + .05 * Math.sin(t * 1.3) });
+  css(arcs, { transform: `translate(${W * .95}px,${H * 1.02}px) translate(-50%,-50%) rotate(${t * 6}deg)` });
+  place($('sparkle'), W - 5 * U, H - 5 * U, { s: .75 + .25 * Math.abs(Math.sin(t * 2.4)), r: t * 20, o: .85 });
+
+  let anyLogo = false;
+  for (const s of scenes) {
+    const on = t >= B(s.b0) - (s.b0 === 1 ? B(1) : 0) && t < B(s.b1);
+    css(s.r, { display: on ? '' : 'none' });
+    if (on) s.draw(t);
+  }
+  if (!scenes.some(s => s.draw && t >= B(s.b0) && t < B(s.b0) + 1.3 && [1, 40, 176].includes(s.b0))) css(pulse, { display: 'none' });
+  if (!(t > B(187) && t < B(190.9))) css($('cursor'), { display: 'none' });
+
+  // saffron wipe at given beats (sweeps across, hiding the cut at its midpoint)
+  let wv = false;
+  for (const wb of wipes) {
+    const m = wb === 0 ? B(1) : B(wb);
+    if (t > m - 0.47 && t < m + 0.3) {
+      wv = true;
+      place($('wipe'), kf(t, [[m - 0.47, -0.8 * W], [m, 0.5 * W, 'inExpo'], [m + 0.3, 1.8 * W, 'outExpo']]), cy, { r: -12 });
+    }
+  }
+  if (t < B(1)) { wv = true; place($('wipe'), kf(t, [[0, -0.35 * W], [B(1), 1.6 * W, 'inOutExpo']]), cy, { r: -12 }); }
+  css($('wipe'), { display: wv ? '' : 'none' });
+
+  let iv = false;
+  for (const ib of irises) {
+    const m = B(ib);
+    if (t > m - 0.45 && t < m + 0.6) {
+      iv = true;
+      place($('iris'), cx, cy, { s: kf(t, [[m - 0.45, 0], [m, 1.05, 'inExpo']]), o: t < m ? 1 : 0 });
+      // after the cut: saffron with a growing transparent hole reveals the new scene
+      const hole = kf(t, [[m, 0], [m + 0.55, IR * 0.55, 'outExpo']]);
+      css($('iris2'), { transform: 'none', opacity: t >= m ? 1 : 0, visibility: 'visible', filter: 'none',
+        background: `radial-gradient(circle at 50% 50%, transparent ${hole}px, var(--saffron) ${hole + 1}px)` });
+    }
+  }
+  css($('iris'), { display: iv ? '' : 'none' }); css($('iris2'), { display: iv ? '' : 'none' });
+}
+KI.compose({ duration: DUR, fps: 30, draw });
+</script>
+</body>
+</html>

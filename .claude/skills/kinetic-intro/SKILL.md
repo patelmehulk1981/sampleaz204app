@@ -68,6 +68,16 @@ project/
   logo (median of the saturated pixels) and tell the user what you sampled.
 - Fonts: get them with `npm pack @fontsource/<name>`, copy the `files/*-latin|devanagari-<wt>-normal.woff2` you need, and declare `@font-face` locally (rendering works offline).
 
+## Longer pieces (60–120 s explainers)
+
+Use the scene builders in `templates/explainer-90.html` instead of hand-animating:
+`statement`, `qa`, `split`, `steps`, `rapid`, `logoScene` (with optional CTA tap). Each scene
+is one call with beat numbers, so the whole script reads like a cue sheet. Use this arc:
+hook → problem (one scene for each side) → the gap (music out) → answer (logo, breakdown
+with only pad and arp) → how it works (steps, one card every 6 beats) → rapid-fire breadth →
+values → heart line → logo and CTA. Give the soundtrack `arp` bars so the music has a
+melody, and return to the hot colour and full drums for the last minute.
+
 ## 4. Review, render, deliver
 
 ```bash

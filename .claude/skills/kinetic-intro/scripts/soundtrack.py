@@ -11,7 +11,7 @@ Cue sheet (all times in seconds, bars counted from 0):
 {
   "bpm": 128, "duration": 15,
   "chords": [[50,"m"],[46,""],[53,""],[48,""]],   # MIDI root + quality, one per bar, loops
-  "bars": [ {"kick":1,"hats":1,"clap":1,"bass":1,"pad":1}, ... ],  # {} = silent bar
+  "bars": [ {"kick":1,"hats":1,"clap":1,"bass":1,"pad":1,"arp":1}, ... ],  # {} = silent bar; hats:2 = 16ths
   "mute": [[t0,t1]],          # hard-mute the music bed (the tension gap)
   "impacts": [t], "whooshes": [t_end], "risers": [[t0,t1]],
   "ticks": [[t0,t1]], "chimes": [t], "fade_out": 0.6
@@ -150,6 +150,14 @@ def build(c):
             if b.get("hats"):
                 place(drums, H, tb + beat / 2, 0.5)
                 if b.get("hats") == 2: place(drums, H, tb + beat / 4, 0.25); place(drums, H, tb + 3 * beat / 4, 0.25)
+            if b.get("arp"):  # eighth-note pluck arpeggio: gives long pieces a melody line
+                pat = [0, 1, 2, 3, 2, 1, 0, 2]
+                notes = chord_notes(root + 24, q)
+                for h in range(2):
+                    m = notes[pat[(k * 2 + h) % 8]]
+                    n = int(0.3 * SR); f = midi(m)
+                    s = (np.sin(2 * np.pi * f * np.arange(n) / SR) + 0.15 * saw(f, n)) * env(n, 0.002, 0.12)
+                    place(padb, s, tb + h * beat / 2, 0.16)
             if b.get("bass"):
                 n = int(beat * SR * 0.9); f = midi(root - 12)
                 s = np.sin(2 * np.pi * f * np.arange(n) / SR) + 0.3 * saw(f, n)
