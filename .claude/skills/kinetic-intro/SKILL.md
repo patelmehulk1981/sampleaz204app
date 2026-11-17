@@ -78,6 +78,17 @@ with only pad and arp) → how it works (steps, one card every 6 beats) → rapi
 values → heart line → logo and CTA. Give the soundtrack `arp` bars so the music has a
 melody, and return to the hot colour and full drums for the last minute.
 
+## Voice-over
+
+Write the script as `vo.json` lines with start times, placed just after each scene's text
+appears. Read the text to the beat, and leave the silent gap silent apart from the question.
+Use about 2.5 Hindi words per second and write English words in Devanagari.
+`scripts/voiceover.py` synthesises the lines offline with Kokoro (Hindi: `hm_omega`, `hm_psi`,
+`hf_alpha`, `hf_beta`), speeds up any line that overruns, reports overlaps, ducks the music
+under the voice and mixes. Then remux with `ffmpeg -i video.mp4 -i mix.wav -map 0:v -map 1:a
+-c:v copy`, so the picture doesn't need re-rendering. Also deliver a script table for a human
+voice artist.
+
 ## 4. Review, render, deliver
 
 ```bash

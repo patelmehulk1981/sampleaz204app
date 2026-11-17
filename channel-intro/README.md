@@ -38,3 +38,9 @@ The logo was cut from a frame of the promo video, so a high-res PNG dropped into
 | 82.5–90 | CTA | logo + "आपके पास, आपके अपने।" + "आज ही जुड़ें" tap → "जुड़ गए ✓" |
 
 Every scene is one line in the SCRIPT block of `intro-90.html` (beat numbers + text). Edit the copy there and re-render.
+
+## Voice-over
+
+- Script with timings and English meaning: `voiceover-script.md` (source of truth: `vo-90.json`).
+- `out/intro-90s-{16x9,9x16}-vo-male.mp4` (Kokoro `hm_omega`) · `out/intro-90s-{16x9,9x16}-vo-female.mp4` (`hf_alpha`).
+- Regenerate: see `.claude/skills/kinetic-intro/scripts/voiceover.py` (offline Kokoro TTS + ducking mix), then re-mux. No video re-render needed.
