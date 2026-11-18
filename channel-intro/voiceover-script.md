@@ -34,3 +34,18 @@ Times are where each line starts in the video. A voice artist can record from th
 | 1:27.20 | आज ही जुड़ें। | Join today. |
 
 Generated voice: Kokoro `hm_omega` (male) and `hf_alpha` (female). Timings live in `vo-90.json`.
+
+---
+
+# Voice-over script: 15 s channel intro
+
+| Start | Line (Hindi) | Meaning |
+|---|---|---|
+| 0:01.90 | वोकल फ़ॉर सनातन। | Vocal for Sanatan. |
+| 0:04.30 | दुकान नहीं है? | Don't have a shop? (said in the silence) |
+| 0:05.75 | कोई समस्या नहीं! | No problem! (on the drop) |
+| 0:07.45 | धर्म संस्कृति सेवा स्वदेशी समृद्धि। | Dharma, culture, service, swadeshi, prosperity. (one word per screen) |
+| 0:10.20 | शॉप नहीं… फिर भी बिज़नेस है! | No shop… still a business! |
+| 0:12.40 | आपके पास, आपके अपने। | Near you, your own people. |
+
+Timings: `vo-15.json`.

@@ -41,6 +41,7 @@ Every scene is one line in the SCRIPT block of `intro-90.html` (beat numbers + t
 
 ## Voice-over
 
-- Script with timings and English meaning: `voiceover-script.md` (source of truth: `vo-90.json`).
+- Script with timings and English meaning: `voiceover-script.md` (sources: `vo-90.json`, `vo-15.json`).
+- 15 s intro: `out/intro-{16x9,9x16}-vo-{male,female}.mp4`.
 - `out/intro-90s-{16x9,9x16}-vo-male.mp4` (Kokoro `hm_omega`) · `out/intro-90s-{16x9,9x16}-vo-female.mp4` (`hf_alpha`).
 - Regenerate: see `.claude/skills/kinetic-intro/scripts/voiceover.py` (offline Kokoro TTS + ducking mix), then re-mux. No video re-render needed.
