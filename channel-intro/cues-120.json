@@ -1,0 +1,560 @@
+{
+ "bpm": 128,
+ "duration": 120,
+ "chords": [
+  [
+   50,
+   "m"
+  ],
+  [
+   46,
+   ""
+  ],
+  [
+   53,
+   ""
+  ],
+  [
+   48,
+   ""
+  ]
+ ],
+ "bars": [
+  {
+   "pad": 1,
+   "hats": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "pad": 1,
+   "bass": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1,
+   "clap": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1,
+   "clap": 1
+  },
+  {
+   "kick": 1,
+   "hats": 2,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1
+  },
+  {
+   "kick": 1,
+   "hats": 2,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1
+  },
+  {
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "pad": 1,
+   "arp": 1,
+   "kick": 1,
+   "hats": 1
+  },
+  {
+   "pad": 1,
+   "arp": 1,
+   "kick": 1,
+   "hats": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "pad": 1,
+   "arp": 1,
+   "bass": 1
+  },
+  {
+   "pad": 1,
+   "arp": 1,
+   "bass": 1
+  },
+  {
+   "pad": 1,
+   "arp": 1,
+   "bass": 1,
+   "kick": 1,
+   "hats": 1
+  },
+  {
+   "pad": 1,
+   "arp": 1,
+   "bass": 1,
+   "kick": 1,
+   "hats": 1
+  },
+  {
+   "pad": 1,
+   "arp": 1,
+   "bass": 1,
+   "kick": 1,
+   "hats": 1
+  },
+  {
+   "pad": 1,
+   "arp": 1,
+   "bass": 1,
+   "kick": 1,
+   "hats": 1
+  },
+  {
+   "pad": 1,
+   "arp": 1,
+   "bass": 1,
+   "kick": 1,
+   "hats": 1
+  },
+  {
+   "pad": 1,
+   "arp": 1,
+   "bass": 1,
+   "kick": 1,
+   "hats": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 2,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1
+  },
+  {
+   "kick": 1,
+   "hats": 2,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1
+  },
+  {
+   "kick": 1,
+   "hats": 2,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1
+  },
+  {
+   "kick": 1,
+   "hats": 2,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1
+  },
+  {
+   "kick": 1,
+   "hats": 2,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1
+  },
+  {
+   "kick": 1,
+   "hats": 2,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1
+  },
+  {
+   "kick": 1,
+   "hats": 2,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1
+  },
+  {
+   "kick": 1,
+   "hats": 2,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "pad": 1,
+   "arp": 1,
+   "bass": 1,
+   "hats": 1
+  },
+  {
+   "kick": 1,
+   "pad": 1,
+   "arp": 1,
+   "bass": 1,
+   "hats": 1
+  },
+  {
+   "kick": 1,
+   "pad": 1,
+   "arp": 1,
+   "bass": 1,
+   "hats": 1
+  },
+  {
+   "kick": 1,
+   "pad": 1,
+   "arp": 1,
+   "bass": 1,
+   "hats": 1
+  },
+  {
+   "kick": 1,
+   "hats": 2,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 2,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 2,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 2,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "kick": 1,
+   "hats": 1,
+   "clap": 1,
+   "bass": 1,
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "pad": 1,
+   "arp": 1
+  },
+  {
+   "pad": 1,
+   "arp": 1
+  }
+ ],
+ "mute": [
+  [
+   4.2188,
+   5.625
+  ],
+  [
+   17.8125,
+   18.75
+  ],
+  [
+   111.5625,
+   112.5
+  ]
+ ],
+ "impacts": [
+  0.4688,
+  5.625,
+  18.75,
+  26.25,
+  45.0,
+  75.0,
+  82.5,
+  112.5
+ ],
+ "whooshes": [
+  3.75,
+  5.625,
+  7.5,
+  11.25,
+  15.0,
+  30.0,
+  33.75,
+  37.5,
+  41.25,
+  45.0,
+  56.25,
+  67.5,
+  75.0,
+  84.8438,
+  90.0,
+  97.5,
+  105.0
+ ],
+ "risers": [
+  [
+   16.875,
+   18.75
+  ],
+  [
+   24.375,
+   26.25
+  ],
+  [
+   43.125,
+   45.0
+  ],
+  [
+   73.125,
+   75.0
+  ],
+  [
+   110.625,
+   112.5
+  ]
+ ],
+ "ticks": [
+  [
+   4.2188,
+   5.625
+  ],
+  [
+   117.6562,
+   117.6797
+  ]
+ ],
+ "chimes": [
+  18.75,
+  112.5
+ ],
+ "fade_out": 2.0
+}

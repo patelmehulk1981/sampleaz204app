@@ -45,3 +45,9 @@ Every scene is one line in the SCRIPT block of `intro-90.html` (beat numbers + t
 - 15 s intro: `out/intro-{16x9,9x16}-vo-{male,female}.mp4`.
 - `out/intro-90s-{16x9,9x16}-vo-male.mp4` (Kokoro `hm_omega`) · `out/intro-90s-{16x9,9x16}-vo-female.mp4` (`hf_alpha`).
 - Regenerate: see `.claude/skills/kinetic-intro/scripts/voiceover.py` (offline Kokoro TTS + ducking mix), then re-mux. No video re-render needed.
+
+## 2 minute introduction (`intro-120.html`)
+
+- `out/intro-2min-{16x9,9x16}-vo-{male,female}.mp4` (with voice-over) · `out/intro-2min-{16x9,9x16}.mp4` (music only).
+- 256 beats at 128 BPM = 120.0 s. Built from the 90 s cut plus three new sections: a story (0:30–0:45, Sharma ji finds an electrician, Ramesh bhai gets a customer), "क्यों वोकल फ़ॉर सनातन?" (1:07–1:15) and "इस मुहिम का हिस्सा बनें" (1:45–1:52).
+- Soundtrack `cues-120.json`, voice-over `vo-120.json`.
